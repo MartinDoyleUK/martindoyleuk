@@ -1,2 +1,3 @@
-# martindoyle-cli
-Repo for containing the code for 'npx martindoyle'
+# martindoyleuk
+
+Monorepo containing public libraries/packages for @MartinDoyleUK
