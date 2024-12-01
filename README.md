@@ -5,5 +5,5 @@ I've been building web pages since the early 90's and people have been paying me
 #### Please check out my CLI card ...
 
 ```
-npx martindoyle
+npx -y martindoyle
 ```
