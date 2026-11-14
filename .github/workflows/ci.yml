@@ -1,0 +1,28 @@
+name: CI
+
+# `ci-ok` is the required check of this repository's default-branch ruleset (managed in
+# MartinDoyleUK/terraform, github/rulesets.tf): a pull request merges only once it has passed
+# on a branch that is up to date with main. A pull_request run tests GitHub's merge of the
+# branch into main, so with that rule it tests exactly what main will become.
+# Keep the job name, which the ruleset requires by name, and add no path filters: a required
+# check that never reports blocks the pull request.
+on:
+  pull_request:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+jobs:
+  ci-ok:
+    runs-on: ubuntu-latest
+    steps:
+      # The repository is only the profile README, so there is nothing to build or test; the
+      # job exists so pull requests have the required check to pass.
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - run: test -s README.md
